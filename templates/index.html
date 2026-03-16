@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iris Sınıflandırma</title>
+    <meta name="description" content="PyTorch tabanlı derin öğrenme modeli ile Iris çiçeği türü sınıflandırma aracı.">
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Arka plan parlamaları -->
+    <div class="aurora" aria-hidden="true">
+        <div class="aurora__item aurora__item--1"></div>
+        <div class="aurora__item aurora__item--2"></div>
+        <div class="aurora__item aurora__item--3"></div>
+    </div>
+    <!-- Noise texture overlay -->
+    <div class="noise" aria-hidden="true"></div>
+
+    <div class="page-wrapper">
+        <header class="top-header">
+            <div class="header-badge">
+                <span class="badge-dot"></span> AI Destekli Model
+            </div>
+            <h1>Iris Çiçeği Sınıflandırıcı</h1>
+            <p>Yapay Zeka ile Iris türünü tahmin edin</p>
+        </header>
+
+        <main class="main-grid">
+            <!-- SOL: Form -->
+            <section class="panel form-panel">
+                <div class="panel-header">
+                    <h2>Özellik Değerlerini Girin</h2>
+                </div>
+
+                <form id="prediction-form">
+                    <div class="field-group">
+                        <div class="field-header">
+                            <label for="sepal_length">Sepal Uzunluğu (cm)</label>
+                            <span class="range-hint">4.3 – 7.9</span>
+                        </div>
+                        <input type="number" id="sepal_length" step="0.1" required placeholder="Örn: 6.5">
+                    </div>
+
+                    <div class="field-group">
+                        <div class="field-header">
+                            <label for="sepal_width">Sepal Genişliği (cm)</label>
+                            <span class="range-hint">2.0 – 4.5</span>
+                        </div>
+                        <input type="number" id="sepal_width" step="0.1" required placeholder="Örn: 3.0">
+                    </div>
+
+                    <div class="field-group">
+                        <div class="field-header">
+                            <label for="petal_length">Petal Uzunluğu (cm)</label>
+                            <span class="range-hint">1.0 – 7.0</span>
+                        </div>
+                        <input type="number" id="petal_length" step="0.1" required placeholder="Örn: 5.2">
+                    </div>
+
+                    <div class="field-group">
+                        <div class="field-header">
+                            <label for="petal_width">Petal Genişliği (cm)</label>
+                            <span class="range-hint">0.1 – 2.5</span>
+                        </div>
+                        <input type="number" id="petal_width" step="0.1" required placeholder="Örn: 2.3">
+                    </div>
+
+                    <button type="submit" class="btn-predict" id="submit-btn">
+                        <span id="btn-text">Tahmin Yap</span>
+                        <div class="loader hidden" id="loader"></div>
+                    </button>
+                </form>
+
+                <div class="examples-section">
+                    <p class="examples-title">Hızlı Örnekler</p>
+                    <div class="examples-row">
+                        <button class="example-btn" onclick="fillExample(5.1,3.5,1.4,0.2)">🌸 Setosa</button>
+                        <button class="example-btn" onclick="fillExample(5.7,2.9,4.2,1.3)">🌺 Versicolor</button>
+                        <button class="example-btn" onclick="fillExample(6.5,3.0,5.5,1.8)">🌼 Virginica</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SAĞ: Sonuç -->
+            <section class="panel result-panel" id="result-panel">
+                <div class="panel-header">
+                    <h2>Tahmin Sonucu</h2>
+                </div>
+
+                <div class="result-placeholder" id="result-placeholder">
+                    <div class="placeholder-icon">🔬</div>
+                    <p>Sol paneli doldurarak tahmin başlatın.</p>
+                </div>
+
+                <div class="result-content hidden" id="result-content">
+                    <div class="flower-card" id="flower-card">
+                        <div class="glow-ring" id="glow-ring"></div>
+                        <div class="flower-emoji" id="flower-emoji">🌸</div>
+                    </div>
+                    <div class="predicted-class" id="predicted-class-name">—</div>
+                    <div class="confidence-block">
+                        <span class="confidence-label">Güven Oranı</span>
+                        <span class="confidence-value" id="confidence-value">—</span>
+                    </div>
+                    <div class="prob-section">
+                        <p class="prob-title">Tüm Sınıf Olasılıkları</p>
+                        <div id="prob-bars"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>
