@@ -231,9 +231,10 @@ http://localhost:8000
 
 ## 📸 Preview
 
-> Add your app screenshot below:
+![1773667891207001900](https://github.com/user-attachments/assets/886bfafc-d7a6-451f-be14-669fe145a007)
 
-![Iris Classifier App Preview](assets/iris_app_preview.png)
+
+
 
 ---
 
